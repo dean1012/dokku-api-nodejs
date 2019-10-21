@@ -7,9 +7,17 @@ An Express based Dokku HTTP API
 
 * [Dokku](https://github.com/dokku/dokku)
 * [Dokku Daemon](https://github.com/dokku/dokku-daemon)
-* An empty Dokku app named `dokku-api-nodejs`
 
 ### Install
+
+On the Dokku host, you'll need to do the following:
+
+```
+dokku apps:create dokku-api-nodejs
+dokku storage:mount dokku-api-nodejs /var/run/dokku-daemon/dokku-daemon.sock:/var/run/dokku-daemon/dokku-daemon.sock
+```
+
+Then on your local host, you'll need to do the following:
 
 ```
 git clone https://github.com/dean1012/dokku-api-nodejs.git
@@ -53,6 +61,8 @@ Once installed, you need to configure the plugin with:
 ```
 dokku config:set --global DOKKU_LETSENCRYPT_EMAIL=me@example.com
 ```
+
+**Note: You cannot encrypt the application until it has been deployed first**
 
 Once configured, you can enable forced SSL with:
 
