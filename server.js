@@ -5,9 +5,9 @@ const bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
-function send_command(command, callback) {
-  var socket
+var socket
 
+function send_command(command, callback) {
   try {
     socket = net.createConnection('/var/run/dokku-daemon/dokku-daemon.sock')
     socket.write(command + "\n")
